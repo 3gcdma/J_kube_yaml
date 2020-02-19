@@ -63,40 +63,23 @@ spec:
   type: NodePort
   #externalIPs: - 192.168.0.10
 ---
-
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
-metadata:
-  name: eureka
-  namespace: springcloud
-  annotations:
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-spec:
-  entryPoints:
-    - websecure
-  routes:
-  - match: Host(`eureka.kt.geniecube.io`)
-    kind: Rule
-    services:
-    - name: eureka
-      port: 8761
-  tls:
-    opetions:
-      namespace: springcloud
-    certResolver: le
-    domains:
-    - main: eureka.kt.geniecube.io
----
-
-apiVersion: externaldns.k8s.io/v1alpha1
-kind: DNSEndpoint
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
 metadata:
   name: eureka
   namespace: springcloud
 spec:
-  endpoints:
-  - dnsName: eureka.kt.geniecube.io
-    recordTTL: 180
-    recordType: CNAME
-    targets:
-    - kt.geniecube.io
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: eureka
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
+
