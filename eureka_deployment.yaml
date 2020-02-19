@@ -26,6 +26,9 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8761
+          resources:
+            requests:
+              cpu: 200m
           env:
             - name: spring.profiles.active
               valueFrom:
