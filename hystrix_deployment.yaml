@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: kshwnahr/hystrix-server:amds
+          image: kshwnahr/hystrix-server:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 80
