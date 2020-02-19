@@ -26,9 +26,6 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8761
-          resources:
-            requests:
-              cpu: 200m
           env:
             - name: spring.profiles.active
               valueFrom:
@@ -76,7 +73,6 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: eureka
-    namespace: springcloud
   minReplicas: 1
   maxReplicas: 10
   metrics:
