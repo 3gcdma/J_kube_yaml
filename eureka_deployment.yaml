@@ -73,6 +73,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: eureka
+    namespace: springcloud
   minReplicas: 1
   maxReplicas: 10
   metrics:
@@ -82,15 +83,15 @@ spec:
       target:
         type: Utilization
         averageUtilization: 50
-status:
-  observedGeneration: 1
-  lastScaleTime: <some-time>
-  currentReplicas: 1
-  desiredReplicas: 1
-  currentMetrics:
-  - type: Resource
-    resource:
-      name: cpu
-      current:
-        averageUtilization: 0
-        averageValue: 0
+ status:
+   observedGeneration: 1
+   lastScaleTime: <some-time>
+   currentReplicas: 1
+   desiredReplicas: 1
+   currentMetrics:
+   - type: Resource
+     resource:
+       name: cpu
+       current:
+         averageUtilization: 0
+         averageValue: 0
