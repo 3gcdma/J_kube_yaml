@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: kshwnahr/eureka-server:amds
+          image: kshwnahr/eureka:v0.1
           imagePullPolicy: Always
           ports:
             - containerPort: 8761
